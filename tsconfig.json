@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "target": "es5", //타입스크립트파일을 어떤 버전의 자바스크립트로 바꿔줄지 정하는 부분
+    "module": "commonjs"
+    // "noImplicitAny": true, // any라는 타입이 의도치않게 발생할 경우 에러를 띄워주는 설정
+    // "strictNullChecks": true //null, undefined 타입에 이상한 조작하면 에러를 띄우는 설정
+  }
+}
