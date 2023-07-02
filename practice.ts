@@ -80,3 +80,21 @@ let 암거나2: unknown;
 // }
 // 학교.score[4] = false;
 // 학교.friend = ['Lee', 학교.teacher]
+
+//3. 함수에 타입 지정하는 법 & void 타입
+
+//3.1. 아무것도 지정하지 않으면 anytype으로 설정된다.
+//3.2. 함수는 파라미터, return값 타입지정가능
+function 함수(x: number): number {
+  return x * 2;
+}
+//3.4 void : 실수로 무엇인가 return 하는 것을 사전에 막을 수 있다.
+function 함수2(x?: number): void {
+  1 + 1;
+}
+
+//3.5. x? : 파라미터가 옵션인 경우에는 파라미터변수? :타입
+//**중요!** 변수?:number는 변수:number|undefined와 같다.
+function 함수3(x: number | undefined): void {
+  console.log("함수3", x);
+}
