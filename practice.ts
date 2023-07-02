@@ -98,3 +98,25 @@ function 함수2(x?: number): void {
 function 함수3(x: number | undefined): void {
   console.log("함수3", x);
 }
+
+//4.타입 확정하기: Narrowing & Assertion
+//4.1. type이 아직 하나로 확정되지 않았을 경우 type narrowing을 써야한다.
+function 내함수(x: number | string) {
+  if (typeof x === "string") {
+    return x + "1";
+  } else {
+    return x + 1;
+  }
+}
+내함수(123);
+
+//4.2. narrowing으로 판정해주는 문법들 : typeof변수, 속성명 in 오브젝트자료, 인스턴스 instanceof 부모
+
+//4.3. type assertion: 타입 덮어쓰기
+//4.3.1.왼쪽에 있는 것을 number로 덮어 써주세요!
+//4.3.2.assertion은 타입을 a에서 b로 변경하려고 쓰는 것이 아니다. narrowing 할 때 씁니다.
+//4.3.3.무슨 타입이 들어올지 100% 확신할 때 쓴다. 자주 사용안함. 비상용으로 주요 사용.
+function 내함수2(x: number | string) {
+  let array: number[] = [];
+  array[0] = x as number;
+}

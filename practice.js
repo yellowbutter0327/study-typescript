@@ -8,24 +8,24 @@ var 다이어트하니 = undefined;
 var 회원들 = ["kim", "park"]; // 0이라고 기입하면 에러가 나겠죠.
 //1.3. object형도 가능하다.
 var 고객들 = {
-    member1: "kim",
-    member2: "park",
+  member1: "kim",
+  member2: "park",
 };
 var project = {
-    member: ["kim", "park"],
-    days: 30,
-    started: true,
+  member: ["kim", "park"],
+  days: 30,
+  started: true,
 };
 //1.4. 타입스크립트에서 타입 지정 원래 자동으로 됩니다. 문법 생략 가능.
 //1.5. 예지 문제
 var favorite = {
-    song: "곁에 있어줘",
-    singer: "sole",
+  song: "곁에 있어줘",
+  singer: "sole",
 };
 var test = {
-    member: ["kim", "park"],
-    days: 30,
-    started: true,
+  member: ["kim", "park"],
+  days: 30,
+  started: true,
 };
 //2. 타입을 지정하기 애매할 때
 //2.1. number, stiring 둘 다 가능
