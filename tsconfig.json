@@ -1,3 +1,9 @@
+//1. nodejs 최신 버전 설치
+//2. 터미널에 npm install -g typescript
+//3. tsconfig.json 파일 생성하기 - ts 파일을 .js 파일로 변환할 때 어떻게 변환할 것인지 세부설정이 가능하다.
+//4. .ts 파일에 코딩 시작
+//5. 터미널에 tsc-w 해둔 채로
+
 {
   "compilerOptions": {
     "target": "es5", //타입스크립트파일을 어떤 버전의 자바스크립트로 바꿔줄지 정하는 부분
