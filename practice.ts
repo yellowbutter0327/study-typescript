@@ -112,11 +112,52 @@ function 내함수(x: number | string) {
 
 //4.2. narrowing으로 판정해주는 문법들 : typeof변수, 속성명 in 오브젝트자료, 인스턴스 instanceof 부모
 
-//4.3. type assertion: 타입 덮어쓰기
+//4.3. type assertion: 타입 덮어쓰기 - 이것 쓰면 if문 필요 없음
 //4.3.1.왼쪽에 있는 것을 number로 덮어 써주세요!
-//4.3.2.assertion은 타입을 a에서 b로 변경하려고 쓰는 것이 아니다. narrowing 할 때 씁니다.
+//4.3.2. 용도 잘 알자.
+// let 이름: string = "kim";
+// 이름 as number; 이렇게 타입을 a에서 b로 변경하려고 쓰는 것이 아니다.
+// narrowing 할 때 씁니다.
 //4.3.3.무슨 타입이 들어올지 100% 확신할 때 쓴다. 자주 사용안함. 비상용으로 주요 사용.
 function 내함수2(x: number | string) {
   let array: number[] = [];
-  array[0] = x as number;
+  array[0] = x as number; // x를 number로 덮어 써주세요!
 }
+
+//5. 타입도 변수에 담아쓰세요. type 키워드 써서 &readonly
+//5.1. 타입 정의가 너무 길면 type aliases(별칭)을 사용합시다.
+// 별칭은 관습적으로 대문자를 사용합니다. ex) AnimalType
+type Animal = string | number | undefined;
+let 동물: Animal = 123;
+
+//5.2.object 타입도 저장가능합니다.
+type Animal2 = { name: string; age: number };
+let 동물2: Animal2 = { name: "kim", age: 20 };
+
+//5.3. const는 재할당을 막는 변수지 안에 있는 object 값을 바꾸는 것이 아니다.
+const 출생지역 = { region: "seoul" };
+출생지역.region = "busan";
+
+//5.4. readonly로 잠그기 :그런데 typescript를 쓰면 object 자료 수정도 막을 수 있다.
+// editor에서 error는 띄워주지만 실제로 값을 바꿔주지는 않음
+type Girlfriend = {
+  readonly name: string; // object 속성 안에도 ? 사용 가능해서 name?:string 가능
+};
+const 여친: Girlfriend = {
+  name: "백예린",
+};
+
+//5.5. type 변수를 union type으로 합치기 가능하다.
+type Name = string;
+type Age = number;
+type Person = Name | Age;
+
+//5.6. & 연산자로 object 타입 합치기
+type PositionX = { x: number };
+type PositionY = { y: number };
+
+type NewType = PositionX & PositionY;
+let position: NewType = { x: 10, y: 20 };
+
+//5.7.같은 이름의 type 변수는 재정의 불가능하다.
+// type PositionX = {x:number} 이렇게 했는데 다시 또 선언해서 재정의 하는게 불가능하다.
