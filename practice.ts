@@ -1,4 +1,7 @@
 //1. 타입스크립트 기본 타입 정리
+
+import { arrayBuffer } from "stream/consumers";
+
 //1.1 string, number, undefined, null 타입도 있다.
 let 이름: string = "으네";
 let 나이: number = 24;
@@ -161,3 +164,33 @@ let position: NewType = { x: 10, y: 20 };
 
 //5.7.같은 이름의 type 변수는 재정의 불가능하다.
 // type PositionX = {x:number} 이렇게 했는데 다시 또 선언해서 재정의 하는게 불가능하다.
+
+//6. Literal Types로 만드는 const 변수 유사품
+//6.1. Literal Types: 어떤 변수가 미리 골라놓은 데이터만 가질 수 있게 도와줍니다.
+let 성: "kim"; // 성에는 "kim"만 올 수 있는 것임
+let 오잉: "과자" | "짭조름하다";
+오잉 = "짭조름하다";
+
+//6.2. 함수에도 적용 가능하다. a에는 "나는 귀엽다"가 들어가고 return 값은 1 아니면 0
+function 함수4(a: "나는귀엽다"): 1 | 0 {
+  return 1;
+}
+
+function 가위바위보(a: "가위" | "바위" | "보"): ("가위" | "바위" | "보")[] {
+  return ["가위"];
+}
+
+가위바위보("가위");
+
+//6.3. 중요한, 변하지 않는 정보를 저장하고 싶을 때 const를 자주 쓰는데 가끔은 변하는 중요한 정보를 저장하고
+// 싶을 때는 const가 무쓸모이다. 그럴때는 literal type 사용하기
+let 할수있다: "나는" | "우리는";
+const 변수 = "kim";
+
+//6.4. as const & literal type의 문제점
+//as const를 사용해봅시다. object를 잠궈준다.
+//object value 값을 그대로 타입으로 지정해준다.
+//object 속성들에 모두 readonly를 붙여준다.
+let 자료 = { name: "kim" } as const;
+function 함수5(a: "kim") {}
+함수5(자료.name);
