@@ -1,5 +1,6 @@
 //1. 타입스크립트 기본 타입 정리
 
+import { EnumNumberMember } from "@babel/types";
 import { arrayBuffer } from "stream/consumers";
 
 //1.1 string, number, undefined, null 타입도 있다.
@@ -194,3 +195,19 @@ const 변수 = "kim";
 let 자료 = { name: "kim" } as const;
 function 함수5(a: "kim") {}
 함수5(자료.name);
+
+//7. 함수와 methods에 type alias 지정하는 법
+// 함수에 들어갈 파라미터와 return으로 뱉을 값들을 타입 지정할 수 있다.
+type 함수타입 = (a: string) => number; // 7.1. 함수 타입은 ()=>{} 모양으로
+
+let 함수7: 함수타입 = function (a) {
+  return 10;
+}; //7.2. 함수 표현식에만 type alias 사용 가능
+
+let 회원정보 = {
+  name: "kim",
+  plusOne(a) {
+    return a + 1;
+  },
+  changeName: () => {},
+};
