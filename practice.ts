@@ -211,3 +211,13 @@ let 회원정보 = {
   },
   changeName: () => {},
 };
+
+//8. 타입스크립트로 HTML 변경과 조작할 때 주의점
+//8.1 tsconfig.json에서 strickNullChecks 를 true로 바꾸면
+// strickNullChecks 옵션도 자동으로 true로 켜진다.
+
+//8.2 ts로 작성된 코드를 js코드로 옮기고
+//let 제목 = document.querySelector("#title") 제목.innerHTML = '반값소'
+//이렇게 하면 에러가를 낸다. 셀렉터로 html을 찾으면 Element|null 이기 때문이다.
+
+//8.3 제목이라는 변수가 union type이기 때문에 if문으로 type narrowing 하면 된다.
