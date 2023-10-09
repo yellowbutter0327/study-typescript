@@ -220,4 +220,76 @@ let 회원정보 = {
 //let 제목 = document.querySelector("#title") 제목.innerHTML = '반값소'
 //이렇게 하면 에러가를 낸다. 셀렉터로 html을 찾으면 Element|null 이기 때문이다.
 
+//<HTML 조작시 narrowing 방법 5개>
 //8.3 제목이라는 변수가 union type이기 때문에 if문으로 type narrowing 하면 된다.
+let 제목5 = document.querySelector("#title");
+if (제목5 != null) {
+  제목5.innerHTML = "반가워요";
+}
+
+//8.4 instanceof 연산자
+let 제목6 = document.querySelector("#title");
+if (제목6 instanceof Element) {
+  제목6.innerHTML = "반가워요";
+}
+
+// 8.5. as로 사기치기
+let 제목7 = document.querySelector("#title") as Element;
+제목7.innerHTML = "반가워요";
+if (제목7?.innerHTML != undefined) {
+  제목7.innerHTML = "반가워요";
+}
+
+//8.6. 태그마다 정해져있다.
+//a 태그인 경우에는 HTMLAnchorElement, h1이면 HTMLHeadingElement,
+//button 태그면 HTMLButtonElement
+
+//9. class 만들 때 타입 지정 가능
+class Person2 {
+  person2Name; // ts 문법 ; constructor는 필드값에 어쩌구가 미리 있어야함
+  // this.어쩌구가 가능하다.
+  constructor(a: string) {
+    this.person2Name = a;
+  }
+
+  함수(a: string) {
+    a + "안녕하세요";
+  }
+}
+
+let 사람1 = new Person2("kim");
+let 사람2 = new Person2("park");
+
+class Person3 {
+  data = 0;
+}
+
+let 사람3 = new Person3();
+//console(사람3.data)
+
+//10. Object에 타입지정하려면 interface도 가능
+//10.1bject의 경우에는 type 키워드 대신에 interface도 사용가능하다.
+type SmallAnimal = { name: String };
+type Cat = { age: number } & SmallAnimal;
+//10.2 &기호 : 두 타입을 전부 만족하는 타입
+//중복 속성 발생해도 미리 에러가 안나기 때문에 주의한다. 선언 말고 사용할때 에러가 난다.
+// '&'는 합치는 게 아니라 동시에 만족하는 속성을 의미한다.
+
+//10.3 차이점 > interface는 중복선언 가능, type은 중복선언 불가능
+interface Student {
+  name: string;
+}
+interface Student {
+  score: number;
+}
+
+interface Teacher extends Student {
+  age: number;
+}
+//extends 쓸 때 중복속성 발생하면 에러로 잡아준다.
+
+let 학생: Student = { name: "kim", score: 100 };
+let 선생: Teacher = { name: "kim", age: 20, score: 100 };
+
+//10.4 외부 라이브러리 같은 경우 interface를 많이 쓴다. 그후 추후에 타입에 뭐 더하는거는 쉽다.
+//다른 사람이 이용 많이 할 것 같으면 object 타입 정할때 interface를 쓰자.
