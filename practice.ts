@@ -293,3 +293,47 @@ let 선생: Teacher = { name: "kim", age: 20, score: 100 };
 
 //10.4 외부 라이브러리 같은 경우 interface를 많이 쓴다. 그후 추후에 타입에 뭐 더하는거는 쉽다.
 //다른 사람이 이용 많이 할 것 같으면 object 타입 정할때 interface를 쓰자.
+
+//[PART2]
+//11. 함수 rest 파라미터, destructuring 할 때 타입지정
+
+function 함수8(...a: number[]) {
+  console.log(a);
+}
+//개수는 상관이 없다.
+//rest 파라미터는 다른 파라미터가 있으면 맨 뒤에만 사용이 가능하다.
+함수8(1, 5, 3, 5, 6);
+
+//참고문법: spread operator (괄호 벗기는 문법)
+let arr = [1, 2, 3];
+let arr2 = [4, 5];
+let arr3 = [...arr, ...arr2];
+console.log(arr3);
+
+//11.1 destructuring 개념
+let [변수1, 변수2] = ["안녕", 100];
+let { students, age } = { students: true, age: 20 };
+//11.2 사실 {students:students, age:age} 이렇게 된건데 생략 가능하다.
+//11.3 let object = { students: true, age: 20 }; 이렇게 하고
+//11.4 함수9(object.students, object,age) 이렇게 할 수 있지만 그렇게 안하고
+//11.5처럼 하면 된다.
+
+function 함수9({ students, age }: { students: boolean; age: number }) {
+  console.log(students, age);
+}
+
+//11.5
+함수9({ students: true, age: 24 });
+
+//11.6 숫자 여러개를 입력하면 최댓값을 return 해주는 함수를 만들어봅시다.
+function insertNum(...x: number[]): number {
+  let result = 0;
+  x.forEach((i) => {
+    if (result < i) {
+      result = i;
+    }
+  });
+  return result;
+}
+
+console.log(insertNum(4, 5, 3, 8));
