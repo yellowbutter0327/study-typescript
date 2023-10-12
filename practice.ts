@@ -336,4 +336,11 @@ function insertNum(...x: number[]): number {
   return result;
 }
 
-console.log(insertNum(4, 5, 3, 8));
+//12.Narrowing 할 수 있는 방법 더 알아보기
+//in 연산자로 object 자료 narrowing
+//서로 배타적인 속성을 가져와야 narrowing이 가능
+function printAll(strs: string | undefined) {
+  if (strs && typeof strs === "string") {
+    console.log(s);
+  }
+}
