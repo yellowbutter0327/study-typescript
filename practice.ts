@@ -344,3 +344,10 @@ function printAll(strs: string | undefined) {
     console.log(s);
   }
 }
+
+//12.1 class로부터 생산된 object라면 instanceof로 narrowing
+//javascript에서는 instanceof로 부모 클래스가 누군지 검사할 수 있다.
+let 날짜 = new Date();
+if (날짜 instanceof Date) {
+  console.log("참이에요");
+}
