@@ -362,10 +362,36 @@ type Bike = {
   color: string;
 };
 
-function 함수(x: Car | Bike) {
+function 함수12(x: Car | Bike) {
   if (x.wheel === "4개") {
     console.log("the car is " + x.color);
   } else {
     console.log("the bike is " + x.color);
   }
 }
+
+//13. Narrowing 할 수 있는 방법 더 알아보기
+// Narrowing 하면서 undefined 타입일 경우, 복잡한 object 자료를 narrowing 하는 것이 어렵다.
+
+//13.1 null & undefined 체크하는법
+//보통 if(저 변수가 undefined일 경우) 어쩌구~ 하는 코드를 많이 짜는데 &&연산자로도 대체가 가능하다.
+
+//13.1.1. && 연산자의 다른 기능 (falsy한 값 예외처리하기)
+// && 기호로 비교할때 true와 false를 넣는게 아니라 자료형을 넣으면
+//&& 사이에서 처음 등장하는 falsy 값을 찾아주고 그게 아니면 마지막 값을 넘겨준다.
+
+1 && null && 3; // null이 남음
+undefined && "안녕" && 100; // undefined 남음
+
+//이렇게 사용하면 변수가 undefined라면 undefined가 남아서 if문이 실행되지 않고,
+//if문 조건식안에 falsy 값이 남으면 if문 실행되지 않는다.
+// 변수가 string 타입이면 if문이 실행된다.
+
+function printAll(strs: string | undefined) {
+  if (strs && typeof strs === "string") {
+    console.log(s);
+  }
+}
+
+//근데 한 눈에 안들어온다면 안쓰는게 좋다.
+//그냥 if (저 변수가 undefined일 경우) 어쩌구~ 이렇게 if문을 하나 더 쓰는게 낫다.
